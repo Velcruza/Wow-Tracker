@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import AddCharacter from "./AddCharacter";
 import CharacterCard from "./CharacterCard";
 
-function HomePage ({setCurrentUser, currentUser}) {
+function HomePage ({setCurrentUser, currentUser, setCurrentCharacter}) {
     const [chars , setChars] = useState([]);
+    const [show, setShow] = useState(false)
     const handleLogout = () => {
         setCurrentUser(null)
         fetch('/logout', { method: 'DELETE' })
@@ -12,7 +14,7 @@ function HomePage ({setCurrentUser, currentUser}) {
         .then(res => res.json())
         .then(data => setChars(data))
     }, [])
-    const charList = chars.map(character => <CharacterCard character={character} key={character.id}/>)
+    const charList = chars.map(character => <CharacterCard character={character} key={character.id} setCurrentCharacter={setCurrentCharacter}/>)
     return (
         <>
         <button onClick={handleLogout} style={{float: 'right', marginRight: 10, height: '30px'}}>Logout</button>
@@ -20,6 +22,8 @@ function HomePage ({setCurrentUser, currentUser}) {
         Bio: {currentUser.bio} <br/>
         Character list: 
         {charList}
+        <button onClick={()=>setShow(true)}> Add character </button>
+        <AddCharacter show={show} setShow={setShow}/>
         </>
     )
 }
