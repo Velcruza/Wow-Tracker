@@ -10,7 +10,7 @@ function LoggedIn({ setCurrentUser, currentUser }){
     return(
         <Routes>
             <Route path='/' element={<HomePage setChars={setChars} chars={chars} setCurrentUser={setCurrentUser} currentUser={currentUser} currentCharacter={currentCharacter} setCurrentCharacter={setCurrentCharacter}/>}/>
-            <Route path='/character' element={<CharacterPage currentCharacter={currentCharacter} setChars={setChars}/>}/>
+            <Route path='/character' element={<CharacterPage setCurrentCharacter={setCurrentCharacter} currentCharacter={currentCharacter} setChars={setChars}/>}/>
         </Routes>
     )
 }

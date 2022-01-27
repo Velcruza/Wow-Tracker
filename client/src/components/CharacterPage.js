@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
 
-function CharacterPage ({currentCharacter, setChars}) {
+function CharacterPage ({currentCharacter, setChars, setCurrentCharacter}) {
     const [mistsTyr, setMistsTyr] = useState(0);
     const [mistsFort, setMistsFort] = useState(0);
     const [topTyr, setTopTyr] = useState(0);
@@ -31,6 +33,8 @@ function CharacterPage ({currentCharacter, setChars}) {
     const [fate, setFate] = useState(0);
     const [kt, setKt] = useState(0);
     const [sylv, setSylv] = useState(0);
+    const [editShow, setEditShow] = useState(false)
+    const [formData, setFormData] = useState({bio: ''})
     let history = useNavigate()
 
     useEffect(() => {
@@ -140,7 +144,6 @@ function CharacterPage ({currentCharacter, setChars}) {
         })
     }
     function handleRemove () {
-        console.log(currentCharacter.id)
         fetch(`/characters/${currentCharacter.id}`, {method: 'DELETE'})
         fetch("/my_characters")
         .then(res => res.json())
@@ -150,9 +153,35 @@ function CharacterPage ({currentCharacter, setChars}) {
     function handleReturn () {
         history('/')
     }
+    function handleClose () {
+        setEditShow(false)
+        setFormData({bio: ''})
+    }
+    const handleFormChange = (e) =>{
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        })
+    }
+    function handleSubmit (e) {
+        e.preventDefault()
+        fetch(`characters/${currentCharacter.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setCurrentCharacter(data)
+            setFormData({
+                bio: ''
+            })
+        })
+        setEditShow(false)
+    }
     return (
         <div className="character-page">
-            <Button variant="primary" onClick={handleReturn}>Back To Homepage</Button> <br/>
+            <Button variant="danger" onClick={handleRemove} style={{float: 'right', marginRight: 10}}>Remove Character</Button><br/>
             <br/>
             <Table striped bordered hover size="sm" variant="dark">
                 <thead>
@@ -269,7 +298,22 @@ function CharacterPage ({currentCharacter, setChars}) {
                 </tbody>
             </Table>
             <br/>
-            <Button variant="danger" onClick={handleRemove}>Remove Character</Button><br/>
+            <Button variant="primary" onClick={()=>setEditShow(true)}>Edit Character</Button> <br/>
+            <Modal show={editShow} onHide={handleClose}>
+            <Form onSubmit={handleSubmit}>
+                <Form.Label>Bio</Form.Label>
+                <Form.Control
+                    type="text"
+                    id="bio"
+                    value={formData.bio}
+                    onChange={handleFormChange}
+                    placeholder={currentCharacter.bio}
+                    />
+                <Button variant="success" type="submit">Update</Button>
+            </Form>
+        </Modal>
+            <br/>
+            <Button variant="primary" onClick={handleReturn}>Back To Homepage</Button> <br/>
         </div>
     ) 
 }

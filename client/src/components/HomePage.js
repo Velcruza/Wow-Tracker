@@ -49,7 +49,7 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, 
     const charList = chars.map(character => <CharacterCard character={character} key={character.id} setCurrentCharacter={setCurrentCharacter}/>)
     return (
         <div className="homepage">
-        <Button variant="danger" onClick={handleLogout} style={{float: 'right', marginRight: 10, height: '30px'}}>Logout</Button>
+        <Button variant="danger" onClick={handleLogout} style={{float: 'right', marginRight: 10}}>Logout</Button>
         <br/>
         <br/>
         <Table striped bordered hover size="sm" variant="dark">
