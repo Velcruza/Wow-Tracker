@@ -27,6 +27,37 @@ function AddCharacter ({show, setShow, setChars, chars, currentUser}) {
         e.preventDefault()
         fetch(`https://www.warcraftlogs.com:443/v1/rankings/character/${formData.name}/${formData.realm}/US?api_key=ea89d8e5fef89c915d635e33e2a90235`).then(res => {
         if(res.ok) {
+            // fetch('/characters')
+            // .then(res => res.json())
+            // .then(data => {
+            //     data.forEach(character => {
+            //         if(character.name.toUpperCase() != formData.name.toUpperCase()){
+            //             console.log(data)
+            //             setChars([...chars, formData])
+            //             fetch('/characters', {
+            //                 method: 'POST',
+            //                 headers: {'Content-Type' : 'application/json'},
+            //                 body: JSON.stringify(formData)
+            //             })
+            //             .then(res => res.json())
+            //             .then(data => {
+            //                 console.log(data)
+            //                 setFormData({
+            //                     name: '',
+            //                     realm: '',
+            //                     bio: ''
+            //                 })
+            //                 fetch('user_characters', {
+            //                     method: 'POST',
+            //                     headers: {'Content-Type' : 'application/json'},
+            //                     body: JSON.stringify({user_id: currentUser.id, character_id: data.id})
+            //                 })
+            //             })
+            //         } else {
+            //             console.log("noob")
+            //         }
+            //     })
+            // })  
             setChars([...chars, formData])
             fetch('/characters', {
                 method: 'POST',

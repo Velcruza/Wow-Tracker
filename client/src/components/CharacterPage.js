@@ -38,7 +38,7 @@ function CharacterPage ({currentCharacter, setChars, setCurrentCharacter}) {
     let history = useNavigate()
 
     useEffect(() => {
-        fetch(`https://raider.io/api/v1/characters/profile?region=us&realm=${currentCharacter.realm}&name=${currentCharacter.name}&fields=mythic_plus_best_runs%2Cmythic_plus_alternate_runs%2Cmythic_plus_scores`)
+        fetch(`https://raider.io/api/v1/characters/profile?region=us&realm=${currentCharacter.realm.toUpperCase()}&name=${currentCharacter.name}&fields=mythic_plus_best_runs%2Cmythic_plus_alternate_runs%2Cmythic_plus_scores`)
         .then(res => res.json())
         .then(data => handleDungeons(data))
         fetch(`https://www.warcraftlogs.com:443/v1/rankings/character/${currentCharacter.name}/${currentCharacter.realm}/US?api_key=ea89d8e5fef89c915d635e33e2a90235`)
@@ -190,7 +190,7 @@ function CharacterPage ({currentCharacter, setChars, setCurrentCharacter}) {
                         <th>{rio} score</th>
                     </tr>
                     <tr>
-                        <th>Bio</th>
+                        <th>Character Bio & Contact Info</th>
                         <th>{currentCharacter.bio}</th>
                     </tr>
                 </thead>
@@ -301,7 +301,7 @@ function CharacterPage ({currentCharacter, setChars, setCurrentCharacter}) {
             <Button variant="primary" onClick={()=>setEditShow(true)}>Edit Character</Button> <br/>
             <Modal show={editShow} onHide={handleClose}>
             <Form onSubmit={handleSubmit}>
-                <Form.Label>Bio</Form.Label>
+                <Form.Label>Character Bio & Contact Info</Form.Label>
                 <Form.Control
                     type="text"
                     id="bio"

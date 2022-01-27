@@ -9,6 +9,10 @@ class CharactersController < ApplicationController
         render json: char
     end
 
+    def index
+        render json: Character.all, status: :ok
+    end
+
     def destroy
         char = Character.find(params[:id])
         char.destroy
