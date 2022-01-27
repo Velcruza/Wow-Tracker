@@ -8,7 +8,7 @@ function CharacterCard ({character, setCurrentCharacter}) {
     }
     return (
         <div onClick={handleClick}>
-        {character.name}
+        {character.name}-{character.realm}
         </div>
     )
 }

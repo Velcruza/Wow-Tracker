@@ -1,2 +1,0 @@
-class UserBossesController < ApplicationController
-end

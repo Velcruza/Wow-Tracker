@@ -1,2 +1,0 @@
-class BossesController < ApplicationController
-end

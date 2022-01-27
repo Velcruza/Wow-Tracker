@@ -151,6 +151,7 @@ function CharacterPage ({currentCharacter, setChars}) {
     return (
         <div>
             <button onClick={handleReturn}>Back To Homepage</button> <br/>
+            <br/>
             {currentCharacter.name}-{currentCharacter.realm} -- {rio} score<br/>
             Mists | Tyr:  {mistsTyr} | Fort: {mistsFort}<br/>
             TOP | Tyr: {topTyr}  | Fort: {topFort}  <br/>
@@ -160,7 +161,6 @@ function CharacterPage ({currentCharacter, setChars}) {
             SOA | Tyr: {soaTyr} | Fort: {soaFort} <br/>
             SD | Tyr: {sdTyr} | Fort: {sdFort} <br/>
             HOA | Tyr: {hoaTyr} | Fort: {hoaFort} <br/>
-            <br/>
             <br/>
             Tarra: {tara}<br/>
             Eye: {eye}<br/>
@@ -172,7 +172,10 @@ function CharacterPage ({currentCharacter, setChars}) {
             Fatescribe: {fate}<br/>
             KT: {kt}<br/>
             Sylv: {sylv}<br/>
-            <button onClick={handleRemove}>Remove Character</button>
+            <br/>
+            Bio: {currentCharacter.bio} <br/>
+            <br/>
+            <button onClick={handleRemove}>Remove Character</button><br/>
         </div>
     ) 
 }

@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :user_bosses
-  resources :user_dungeons
   resources :user_characters
-  resources :bosses
-  resources :dungeons
   resources :characters
   resources :users
 
