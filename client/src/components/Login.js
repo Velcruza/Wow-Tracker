@@ -105,14 +105,14 @@ function Login({ setCurrentUser }){
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/signup" variant="body2" style={{color: '#800080', textDecoration: 'none'}}>
+                <Link href="/signup" variant="body2" style={{color: '#ffffff', textDecoration: 'none'}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
             <Grid container>
               <Grid item>
-                <Link href="/" variant="body2" style={{color: '#800080', textDecoration: 'none'}}>
+                <Link href="/" variant="body2" style={{color: '#ffffff', textDecoration: 'none'}}>
                   {"Home"}
                 </Link>
               </Grid>

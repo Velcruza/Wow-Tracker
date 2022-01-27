@@ -5,9 +5,45 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://cdn.discordapp.com/attachments/933215019422851093/936112756829069382/1IVHPT7F50M21592950630249_babt.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.login-buttons{
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 20;
+}
+
+.title{
+  position: absolute;
+  margin-top: 30vh;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Lato', sans-serif; 
+  font-size: 54px; 
+  font-weight: 900; 
+  line-height: 58px;
+  letter-spacing: 20px;
+}
+
+.boss-img {
+  height: 40px;
+  width: 40px;
 }

@@ -1,34 +1,36 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
+import Table from 'react-bootstrap/Table'
 
 function CharacterPage ({currentCharacter, setChars}) {
-    const [mistsTyr, setMistsTyr] = useState();
-    const [mistsFort, setMistsFort] = useState();
-    const [topTyr, setTopTyr] = useState();
-    const [topFort, setTopFort] = useState();
-    const [pfTyr, setPfTyr] = useState();
-    const [pfFort, setPfFort] = useState();
-    const [nwTyr, setNwTyr] = useState();
-    const [nwFort, setNwFort] = useState();
-    const [dosTyr, setDosTyr] = useState();
-    const [dosFort, setDosFort] = useState();
-    const [soaTyr, setSoaTyr] = useState();
-    const [soaFort, setSoaFort] = useState();
-    const [sdTyr, setSdTyr] = useState();
-    const [sdFort, setSdFort] = useState();
-    const [hoaTyr, setHoaTyr] = useState();
-    const [hoaFort, setHoaFort] = useState();
-    const [rio, setRio] = useState();
-    const [tara, setTara] = useState();
-    const [eye, setEye] = useState();
-    const [nine, setNine] = useState();
-    const [remnant, setRemnant] = useState();
-    const [soul, setSoul] = useState();
-    const [pain, setPain] = useState();
-    const [guardian, setGuardian] = useState();
-    const [fate, setFate] = useState();
-    const [kt, setKt] = useState();
-    const [sylv, setSylv] = useState();
+    const [mistsTyr, setMistsTyr] = useState(0);
+    const [mistsFort, setMistsFort] = useState(0);
+    const [topTyr, setTopTyr] = useState(0);
+    const [topFort, setTopFort] = useState(0);
+    const [pfTyr, setPfTyr] = useState(0);
+    const [pfFort, setPfFort] = useState(0);
+    const [nwTyr, setNwTyr] = useState(0);
+    const [nwFort, setNwFort] = useState(0);
+    const [dosTyr, setDosTyr] = useState(0);
+    const [dosFort, setDosFort] = useState(0);
+    const [soaTyr, setSoaTyr] = useState(0);
+    const [soaFort, setSoaFort] = useState(0);
+    const [sdTyr, setSdTyr] = useState(0);
+    const [sdFort, setSdFort] = useState(0);
+    const [hoaTyr, setHoaTyr] = useState(0);
+    const [hoaFort, setHoaFort] = useState(0);
+    const [rio, setRio] = useState(0);
+    const [tara, setTara] = useState(0);
+    const [eye, setEye] = useState(0);
+    const [nine, setNine] = useState(0);
+    const [remnant, setRemnant] = useState(0);
+    const [soul, setSoul] = useState(0);
+    const [pain, setPain] = useState(0);
+    const [guardian, setGuardian] = useState(0);
+    const [fate, setFate] = useState(0);
+    const [kt, setKt] = useState(0);
+    const [sylv, setSylv] = useState(0);
     let history = useNavigate()
 
     useEffect(() => {
@@ -149,33 +151,125 @@ function CharacterPage ({currentCharacter, setChars}) {
         history('/')
     }
     return (
-        <div>
-            <button onClick={handleReturn}>Back To Homepage</button> <br/>
+        <div className="character-page">
+            <Button variant="primary" onClick={handleReturn}>Back To Homepage</Button> <br/>
             <br/>
-            {currentCharacter.name}-{currentCharacter.realm} -- {rio} score<br/>
-            Mists | Tyr:  {mistsTyr} | Fort: {mistsFort}<br/>
-            TOP | Tyr: {topTyr}  | Fort: {topFort}  <br/>
-            PF | Tyr:  {pfTyr} | Fort: {pfFort}  <br/>
-            NW | Tyr: {nwTyr} | Fort: {nwFort} <br/>
-            DOS | Tyr: {dosTyr} | Fort: {dosFort} <br/>
-            SOA | Tyr: {soaTyr} | Fort: {soaFort} <br/>
-            SD | Tyr: {sdTyr} | Fort: {sdFort} <br/>
-            HOA | Tyr: {hoaTyr} | Fort: {hoaFort} <br/>
+            <Table striped bordered hover size="sm" variant="dark">
+                <thead>
+                    <tr>
+                        <th>{currentCharacter.name}-{currentCharacter.realm}</th>
+                        <th>{rio} score</th>
+                    </tr>
+                    <tr>
+                        <th>Bio</th>
+                        <th>{currentCharacter.bio}</th>
+                    </tr>
+                </thead>
+            </Table>
+            <Table striped bordered hover size="sm" variant="dark">
+                <thead>
+                    <tr>
+                        <th>Dungeon Name</th>
+                        <th><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936136515657039933/achievement_boss_archaedas.png"/> Tyrannical</th>
+                        <th><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936136535328325662/ability_toughness.png"/> Fortified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135592226484234/12290-icon.png" /> Mists of Tirna Scithe</td>
+                        <td>{mistsTyr}</td>
+                        <td>{mistsFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135701756542996/12293-icon.png" /> Theater of Pain</td>
+                        <td>{topTyr}</td>
+                        <td>{topFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135633703944243/12289-icon.png" /> Plaguefall</td>
+                        <td>{pfTyr}</td>
+                        <td>{pfFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135613315424316/12286-icon.png" /> The Necrotic Wake</td>
+                        <td>{nwTyr}</td>
+                        <td>{nwFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135550493159455/12291-icon.png" /> De Other Side</td>
+                        <td>{dosTyr}</td>
+                        <td>{dosFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135671423315968/12285-icon.png" /> Spires of Ascension</td>
+                        <td>{soaTyr}</td>
+                        <td>{soaFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135651798155285/12284-icon.png" /> Sanguine Depths</td>
+                        <td>{sdTyr}</td>
+                        <td>{sdFort}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936135570223136768/12287-icon.png" /> Halls of Atonement</td>
+                        <td>{hoaTyr}</td>
+                        <td>{hoaFort}</td>
+                    </tr>
+                </tbody>
+            </Table>
             <br/>
-            Tarra: {tara}<br/>
-            Eye: {eye}<br/>
-            Nine: {nine}<br/>
-            Remnant: {remnant}<br/>
-            Soulredner: {soul}<br/>
-            Painsmith: {pain}<br/>
-            Guardian: {guardian}<br/>
-            Fatescribe: {fate}<br/>
-            KT: {kt}<br/>
-            Sylv: {sylv}<br/>
+            <Table striped bordered hover size="sm" variant="dark">
+                <thead>
+                    <tr>
+                        <th>Boss Name</th>
+                        <th>Parse %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936133700767318026/2423-icon.png"/> The Tarragrue</td>
+                        <td>{tara}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134499664822322/2433-icon.png"/> The Eye of the Jailer</td>
+                        <td>{eye}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134522465054780/2429-icon.png"/> The Nine</td>
+                        <td>{nine}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134540727025684/2432-icon.png"/> Remnant of Ner'zhul</td>
+                        <td>{remnant}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134562256408606/2434-icon.png"/> Soulrender Dormazain</td>
+                        <td>{soul}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134578593214524/2430-icon.png"/> Painsmith Raznal</td>
+                        <td>{pain}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134594976161802/2436-icon.png"/> Guardian of the First Ones</td>
+                        <td>{guardian}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134621521932339/2431-icon.png"/> Fatescribe Roh-Kalo</td>
+                        <td>{fate}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134640291414076/2422-icon.png"/> Kel'Thuzad</td>
+                        <td>{kt}</td>
+                    </tr>
+                    <tr>
+                        <td><img className="boss-img" src="https://cdn.discordapp.com/attachments/933215019422851093/936134661657215017/2435-icon.png"/> Sylvanas Windrunner</td>
+                        <td>{sylv}</td>
+                    </tr>
+                </tbody>
+            </Table>
             <br/>
-            Bio: {currentCharacter.bio} <br/>
-            <br/>
-            <button onClick={handleRemove}>Remove Character</button><br/>
+            <Button variant="danger" onClick={handleRemove}>Remove Character</Button><br/>
         </div>
     ) 
 }

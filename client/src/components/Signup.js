@@ -130,14 +130,14 @@ function Signup({ setCurrentUser }) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2" style={{color: '#800080', textDecoration: 'none'}}>
+                <Link href="/login" variant="body2" style={{color: '#ffffff', textDecoration: 'none'}}>
                   Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/" variant="body2" style={{color: '#800080', textDecoration: 'none'}}>
+                <Link href="/" variant="body2" style={{color: '#ffffff', textDecoration: 'none'}}>
                     Home
                 </Link>
               </Grid>

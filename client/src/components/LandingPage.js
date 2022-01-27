@@ -11,6 +11,7 @@ function LandingPage(){
     }
     return(
         <div >
+            <h1 className="title">Wow Tracker</h1>
             <div className="login-buttons">
             <Button onClick={handleLogin} style={{marginRight: '5%'}}>Login</Button>
             <Button variant="info" onClick={handleSignUp} style={{marginLeft: '5%'}}>Signup</Button>

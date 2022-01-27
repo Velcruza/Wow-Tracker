@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :guilds
   resources :user_characters
   resources :characters
   resources :users

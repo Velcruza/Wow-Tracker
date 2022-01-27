@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { useEffect, useState } from "react";
 import AddCharacter from "./AddCharacter";
 import CharacterCard from "./CharacterCard";
+import Table from 'react-bootstrap/Table'
 
 function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, chars}) {
     const [show, setShow] = useState(false)
@@ -47,17 +48,36 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, 
     }
     const charList = chars.map(character => <CharacterCard character={character} key={character.id} setCurrentCharacter={setCurrentCharacter}/>)
     return (
-        <>
-        <button onClick={handleLogout} style={{float: 'right', marginRight: 10, height: '30px'}}>Logout</button>
-        User: {currentUser.username} <br/> <br/>
-        Bio: {currentUser.bio} <br/> <br/>
-        Character list: 
-        {charList}
+        <div className="homepage">
+        <Button variant="danger" onClick={handleLogout} style={{float: 'right', marginRight: 10, height: '30px'}}>Logout</Button>
         <br/>
-        <button onClick={()=>setShow(true)}> Add character </button>
+        <br/>
+        <Table striped bordered hover size="sm" variant="dark">
+            <thead>
+                <tr>
+                    <th>User: {currentUser.username}</th>
+                </tr>
+                <tr>
+                    <th>Bio: {currentUser.bio}</th>
+                </tr>
+            </thead>
+        </Table>
+        <Table striped bordered hover size="sm" variant="dark">
+            <thead>
+                <tr>
+                    <th>Character List</th>
+                </tr>
+            </thead>
+            <tbody>
+                {charList}
+            </tbody>
+        </Table>
+        <br/>
+        <Button onClick={()=>setShow(true)}> Add character </Button>
         <AddCharacter show={show} setShow={setShow} chars={chars} setChars={setChars} currentUser={currentUser}/>
         <br/>
-        <button onClick={()=>setEditShow(true)}>Edit profile</button>
+        <br/>
+        <Button onClick={()=>setEditShow(true)}>Edit profile</Button>
         <Modal show={editShow} onHide={handleClose}>
             <Form onSubmit={handleSubmit}>
                 <Form.Label>Username</Form.Label>
@@ -79,7 +99,7 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, 
                 <Button variant="success" type="submit">Add</Button>
             </Form>
         </Modal>
-        </>
+        </div>
     )
 }
 

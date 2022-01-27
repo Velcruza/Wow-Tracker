@@ -30,9 +30,9 @@ function App() {
   }
 
   return (
-      <>
+      <div>
         {currentUser ? (<LoggedIn setCurrentUser={setCurrentUser} currentUser={currentUser}/>) : (<LoggedOut setCurrentUser={setCurrentUser} currentUser={currentUser}/>)}
-      </>
+      </div>
   );
 }
 
