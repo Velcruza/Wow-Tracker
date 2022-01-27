@@ -8,3 +8,5 @@ char2 = Character.create(name: "Velrush", realm: "Illidan", bio: "hey it me agai
 test = UserCharacter.create(user_id: user.id, character_id: char.id)
 test1 = UserCharacter.create(user_id: user.id, character_id: char1.id)
 test2 = UserCharacter.create(user_id: user.id, character_id: char2.id)
+
+message1 = Message.create(user_id: user.id, text: "Hey everyone! I'm new here.")

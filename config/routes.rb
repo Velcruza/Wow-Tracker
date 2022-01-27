@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :messages
   resources :guilds
   resources :user_characters
   resources :characters

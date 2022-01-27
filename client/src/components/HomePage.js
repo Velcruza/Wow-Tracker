@@ -5,13 +5,15 @@ import { useEffect, useState } from "react";
 import AddCharacter from "./AddCharacter";
 import CharacterCard from "./CharacterCard";
 import Table from 'react-bootstrap/Table'
+import { useNavigate } from 'react-router-dom';
 
 function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, chars}) {
     const [show, setShow] = useState(false)
     const [editShow, setEditShow] = useState(false)
+    let history = useNavigate()
     const [formData, setFormData] = useState({
-        username: '',
-        bio: ''
+        username: currentUser.username,
+        bio: currentUser.bio
     })
     const handleLogout = () => {
         setCurrentUser(null)
@@ -31,8 +33,8 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, 
     function handleClose () {
         setEditShow(false)
         setFormData({
-            name: '',
-            bio: ''
+            username: currentUser.username,
+            bio: currentUser.bio
         })
     }
     function handleSubmit (e) {
@@ -45,6 +47,9 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, 
         .then(res => res.json())
         .then(data => setCurrentUser(data))
         setEditShow(false)
+    }
+    function handleClick () {
+        history('/chat')
     }
     const charList = chars.map(character => <CharacterCard character={character} key={character.id} setCurrentCharacter={setCurrentCharacter}/>)
     return (
@@ -98,7 +103,8 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, 
                     />
                 <Button variant="success" type="submit">Add</Button>
             </Form>
-        </Modal>
+        </Modal> <br/><br/>
+        <Button onClick={handleClick}>Chat</Button>
         </div>
     )
 }
