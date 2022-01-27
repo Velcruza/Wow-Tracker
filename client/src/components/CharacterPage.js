@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from 'react-router-dom';
 
-
-function CharacterPage ({currentCharacter}) {
+function CharacterPage ({currentCharacter, setChars}) {
     const [mistsTyr, setMistsTyr] = useState();
     const [mistsFort, setMistsFort] = useState();
     const [topTyr, setTopTyr] = useState();
@@ -29,6 +29,7 @@ function CharacterPage ({currentCharacter}) {
     const [fate, setFate] = useState();
     const [kt, setKt] = useState();
     const [sylv, setSylv] = useState();
+    let history = useNavigate()
 
     useEffect(() => {
         fetch(`https://raider.io/api/v1/characters/profile?region=us&realm=${currentCharacter.realm}&name=${currentCharacter.name}&fields=mythic_plus_best_runs%2Cmythic_plus_alternate_runs%2Cmythic_plus_scores`)
@@ -136,8 +137,20 @@ function CharacterPage ({currentCharacter}) {
             }
         })
     }
+    function handleRemove () {
+        console.log(currentCharacter.id)
+        fetch(`/characters/${currentCharacter.id}`, {method: 'DELETE'})
+        fetch("/my_characters")
+        .then(res => res.json())
+        .then(data => setChars(data))
+        history('/')
+    }
+    function handleReturn () {
+        history('/')
+    }
     return (
         <div>
+            <button onClick={handleReturn}>Back To Homepage</button> <br/>
             {currentCharacter.name}-{currentCharacter.realm} -- {rio} score<br/>
             Mists | Tyr:  {mistsTyr} | Fort: {mistsFort}<br/>
             TOP | Tyr: {topTyr}  | Fort: {topFort}  <br/>
@@ -159,6 +172,7 @@ function CharacterPage ({currentCharacter}) {
             Fatescribe: {fate}<br/>
             KT: {kt}<br/>
             Sylv: {sylv}<br/>
+            <button onClick={handleRemove}>Remove Character</button>
         </div>
     ) 
 }

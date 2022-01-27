@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import AddCharacter from "./AddCharacter";
 import CharacterCard from "./CharacterCard";
 
-function HomePage ({setCurrentUser, currentUser, setCurrentCharacter}) {
-    const [chars , setChars] = useState([]);
+function HomePage ({setCurrentUser, currentUser, setCurrentCharacter, setChars, chars}) {
     const [show, setShow] = useState(false)
     const handleLogout = () => {
         setCurrentUser(null)
@@ -23,7 +22,7 @@ function HomePage ({setCurrentUser, currentUser, setCurrentCharacter}) {
         Character list: 
         {charList}
         <button onClick={()=>setShow(true)}> Add character </button>
-        <AddCharacter show={show} setShow={setShow}/>
+        <AddCharacter show={show} setShow={setShow} chars={chars} setChars={setChars} currentUser={currentUser}/>
         </>
     )
 }

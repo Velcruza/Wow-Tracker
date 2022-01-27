@@ -6,10 +6,11 @@ import CharacterPage from "./CharacterPage";
 
 function LoggedIn({ setCurrentUser, currentUser }){
     const [currentCharacter, setCurrentCharacter] = useState();
+    const [chars , setChars] = useState([]);
     return(
         <Routes>
-            <Route path='/' element={<HomePage setCurrentUser={setCurrentUser} currentUser={currentUser} currentCharacter={currentCharacter} setCurrentCharacter={setCurrentCharacter}/>}/>
-            <Route path='/character' element={<CharacterPage currentCharacter={currentCharacter}/>}/>
+            <Route path='/' element={<HomePage setChars={setChars} chars={chars} setCurrentUser={setCurrentUser} currentUser={currentUser} currentCharacter={currentCharacter} setCurrentCharacter={setCurrentCharacter}/>}/>
+            <Route path='/character' element={<CharacterPage currentCharacter={currentCharacter} setChars={setChars}/>}/>
         </Routes>
     )
 }

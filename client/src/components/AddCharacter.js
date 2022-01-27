@@ -3,16 +3,18 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useState } from "react"
 
-function AddCharacter ({show, setShow}) {
+function AddCharacter ({show, setShow, setChars, chars, currentUser}) {
     const [formData, setFormData] = useState({
         name: '',
-        realm: ''
+        realm: '',
+        bio: ''
     })
     function handleClose () {
         setShow(false)
         setFormData({
             name: '',
-            realm: ''
+            realm: '',
+            bio: ''
         })
     }
     const handleFormChange = (e) =>{
@@ -21,8 +23,29 @@ function AddCharacter ({show, setShow}) {
             [e.target.id]: e.target.value
         })
     }
-    function handleSubmit () {
-        console.log("yey")
+    function handleSubmit (e) {
+        e.preventDefault()
+        setChars([...chars, formData])
+        fetch('/characters', {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setFormData({
+                name: '',
+                realm: '',
+                bio: ''
+            })
+            fetch('user_characters', {
+                method: 'POST',
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({user_id: currentUser.id, character_id: data.id})
+            })
+        })
+        setShow(false)
     }
 
     return (
@@ -42,6 +65,13 @@ function AddCharacter ({show, setShow}) {
                     type="text"
                     id="realm"
                     value={formData.realm}
+                    onChange={handleFormChange}
+                    />
+                <Form.Label>Character Bio & Contact Info</Form.Label>
+                    <Form.Control
+                    type="text"
+                    id="bio"
+                    value={formData.bio}
                     onChange={handleFormChange}
                     />
                 <Button variant="success" type="submit">Add</Button>
